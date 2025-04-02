@@ -3,6 +3,8 @@ import '../styles/style.css';
 import axios from "axios";
 import VideoRecorder from "./VideoRecorder";
 import { FaSignOutAlt, FaEdit, FaSave, FaTimes } from "react-icons/fa";
+const API_BASE_URL = "https://backend-build.onrender.com/api";
+
 
 const ProfileCard = ({ user = {}, token }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -28,7 +30,7 @@ const ProfileCard = ({ user = {}, token }) => {
         formData.append("profileImage", selectedFile);
   
         const imageUploadRes = await axios.post(
-          "http://localhost:5000/api/upload", 
+          `${API_BASE_URL}/upload`, 
           formData, 
           {
             headers: { 
@@ -47,7 +49,7 @@ const ProfileCard = ({ user = {}, token }) => {
       };
   
       const response = await axios.put(
-        `http://localhost:5000/api/users/${user.id}`,
+        `${API_BASE_URL}/users/${user.id}`,
         updatedUser,
         {
           headers: { Authorization: `Bearer ${token}` }

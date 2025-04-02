@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../styles/style.css'
 import { Link, useNavigate } from 'react-router-dom';
 import Dashboard from "./Dashboard"
+const API_BASE_URL = "https://backend-build.onrender.com/api";
 
 
 function Login(){
@@ -29,7 +30,7 @@ function Login(){
         setError("");
 
         try{
-            const res = await axios.post('http://localhost:5000/api/auth/login', form)
+            const res = await axios.post(`${API_BASE_URL}/api/auth/login`, form)
             localStorage.setItem('token', res.data.token);
             setUser(res.data);
 

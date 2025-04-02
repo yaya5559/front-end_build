@@ -3,6 +3,9 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../styles/style.css'
 
+const API_BASE_URL = "https://backend-build.onrender.com/api";
+
+
 function Register() {
     const [form, setForm] = useState({username:'', email: '', password:''});
     const [error, setError] = useState(''); // State for error messages
@@ -19,7 +22,7 @@ function Register() {
         setError(''); 
 
         try{
-            await axios.post('http://localhost:5000/api/auth/register', form);
+            await axios.post(`${API_BASE_URL}/auth/register`, form);
             alert('User registered successfully!');
         }catch(err){
             if(err.response && err.response.status===400){
