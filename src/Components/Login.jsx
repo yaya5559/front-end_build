@@ -30,7 +30,7 @@ function Login(){
         setError("");
 
         try{
-            const res = await axios.post(`${API_BASE_URL}/api/auth/login`, form)
+            const res = await axios.post(`${API_BASE_URL}/auth/login`, form)
             localStorage.setItem('token', res.data.token);
             setUser(res.data);
 
