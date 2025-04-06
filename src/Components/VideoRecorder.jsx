@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 
-
-const API_BASE_URL = "https://backend-build.onrender.com/api";
 const VideoRecorder = ({ userId }) => {
     const [recording, setRecording] = useState(false);
     const [detectionLog, setDetectionLog] = useState([]);
@@ -82,7 +80,7 @@ const VideoRecorder = ({ userId }) => {
 
     const sendDetectionLog = async () => {
         try {
-            await fetch(`${API_BASE_URL}/bin/detections`, {
+            await fetch("https://backend-build.onrender.com/api/bin/detections", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

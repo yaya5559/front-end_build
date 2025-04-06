@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import ProfileCard from "./ProfileCard";
-const API_BASE_URL = "https://backend-build.onrender.com/api";
 
 
 
@@ -14,7 +13,7 @@ const Dashboard = () =>{
             const token = localStorage.getItem('token');
             if (!token) return;
             
-            const response = await axios.get(API_BASE_URL, {
+            const response = await axios.get('https://backend-build.onrender.com/api/user', {
               headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }
             });
             
