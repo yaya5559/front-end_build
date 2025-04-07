@@ -3,6 +3,7 @@ import '../styles/style.css';
 import axios from "axios";
 import VideoRecorder from "./VideoRecorder";
 import { FaSignOutAlt, FaEdit, FaSave, FaTimes } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const ProfileCard = ({ user = {}, token }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -70,7 +71,7 @@ const ProfileCard = ({ user = {}, token }) => {
     if (window.confirm("Are you sure you want to sign out?")) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      window.location.href = '/login';
+      navigate('/login');
     }
   };
 
