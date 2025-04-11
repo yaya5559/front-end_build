@@ -69,6 +69,18 @@ const VideoRecorder = ({ userId }) => {
             setRecording(true);
             setDetectionLog([]);
             detectBinUsage();
+
+            try {
+                await fetch(`https://backend-build.onrender.com/api/users/${userId}/increment-score`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ increment: 1 }) // Optional: backend can default to +1
+                });
+            } catch (err) {
+                console.error("Failed to update user score:", err);
+            }
         }
     };
 
