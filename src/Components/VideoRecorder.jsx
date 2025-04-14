@@ -92,7 +92,7 @@ const VideoRecorder = ({ userId, refreshUser }) => {
                
 
                 localStorage.setItem('user', JSON.stringify(updatedUser));
-                await fetch(`https://backend-build.onrender.com/api/users/${userId}/increment-score`, {
+                await fetch(`https://backend-build.onrender.com/api/user/${userId}/increment-score`, {
                 //await fetch(`http://localhost:5000/api/user/${userId}/increment-score`,{
                 method: "PUT",
                     headers: {
