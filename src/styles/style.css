@@ -508,3 +508,32 @@ button:hover {
   .sign-out-button:active {
     transform: translateY(0);
   }
+
+  .partners-tab {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.partners-tab h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.partner-logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px;
+}
+
+.partner-logos img {
+    height: 60px;
+    object-fit: contain;
+    transition: transform 0.2s ease-in-out;
+}
+
+.partner-logos img:hover {
+    transform: scale(1.1);
+}

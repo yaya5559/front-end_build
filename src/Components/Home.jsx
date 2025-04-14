@@ -6,6 +6,8 @@ import Navbar from './Navbar';
 
 function Home() {
     const navigate = useNavigate();
+    localStorage.clear();
+
 
 
     return(

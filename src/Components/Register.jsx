@@ -20,6 +20,8 @@ function Register() {
 
         try{
             await axios.post('https://backend-build.onrender.com/api/auth/register', form);
+            //await axios.post('http://localhost:5000/api/auth/register', form);
+            
             alert('User registered successfully!');
         }catch(err){
             if(err.response && err.response.status===400){

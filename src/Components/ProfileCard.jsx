@@ -3,13 +3,16 @@ import '../styles/style.css';
 import axios from "axios";
 import VideoRecorder from "./VideoRecorder";
 import { FaSignOutAlt, FaEdit, FaSave, FaTimes } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
 
-const ProfileCard = ({ user = {}, token }) => {
+
+const ProfileCard = ({ user = {}, token,refreshUser }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedUser, setEditedUser] = useState(user ? {...user} : {});
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  
+
 
   const handleChange = (e) => {
     setEditedUser({...editedUser, [e.target.name]: e.target.value});
@@ -29,7 +32,8 @@ const ProfileCard = ({ user = {}, token }) => {
         formData.append("profileImage", selectedFile);
   
         const imageUploadRes = await axios.post(
-          "https://backend-build.onrender.com/api/upload", 
+          "https://backend-build.onrender.com/api/upload",
+          //'http://localhost:5000/api/upload', 
           formData, 
           {
             headers: { 
@@ -49,6 +53,7 @@ const ProfileCard = ({ user = {}, token }) => {
   
       const response = await axios.put(
         `https://backend-build.onrender.com/api/users/${user.id}`,
+        //`http://localhost:5000/api/users/${user.id}`,
         updatedUser,
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -71,7 +76,9 @@ const ProfileCard = ({ user = {}, token }) => {
     if (window.confirm("Are you sure you want to sign out?")) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      navigate('/login');
+      window.location.reload();
+
+      navigate('/');
     }
   };
 
@@ -148,14 +155,14 @@ const ProfileCard = ({ user = {}, token }) => {
               <h2 className="username">{editedUser.username || 'User'}</h2>
               <p className="email">{editedUser.email || 'No email provided'}</p>
               <p className="description">
-                {editedUser.description || 'No description yet'}
+                {editedUser.description || ''}
               </p>
-              <p className="score">Score: {editedUser.score || 0}</p>
+              <p className="score"> Score: {editedUser.score || 0}</p>
             </>
           )}
         </div>
         
-        {user?._id && <VideoRecorder userId={user.id} />}
+        {user?._id && <VideoRecorder userId={user.id}  refreshUser={refreshUser}  />}
       </div>
     </div>
   );
